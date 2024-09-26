@@ -1,6 +1,7 @@
 package com.qa.tests;
 
-import com.example.monitor.ExcelChangeMonitor;
+
+import com.qa.monitor.ExcelChangeMonitor;
 import com.qa.screenshot.ScreenshotService;
 import org.testng.annotations.Test;
 
