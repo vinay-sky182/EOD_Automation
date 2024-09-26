@@ -1,12 +1,13 @@
 package com.qa.monitor;
 
 
-import com.example.email.EmailService;
 
 import com.qa.config.Config;
+import com.qa.email.EmailService;
 import com.qa.excel.ExcelUtils;
 import com.qa.screenshot.ScreenshotService;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 public class ExcelChangeMonitor extends AbstractChangeMonitor {
 
@@ -21,8 +22,8 @@ public class ExcelChangeMonitor extends AbstractChangeMonitor {
             String excelFilePath = config.getExcelFilePath();
 
             // Load previous version of the Excel file if it exists
-            Workbook previousWorkbook = ExcelUtils.loadWorkbook("previous_version.xlsx");
-            Workbook currentWorkbook = ExcelUtils.loadWorkbook(excelFilePath);
+            XSSFWorkbook previousWorkbook = ExcelUtils.loadWorkbook("previous_version.xlsx");
+            XSSFWorkbook currentWorkbook = ExcelUtils.loadWorkbook(excelFilePath);
 
             // Check for changes
             boolean changesDetected = !ExcelUtils.workbooksAreEqual(previousWorkbook, currentWorkbook);
@@ -47,4 +48,3 @@ public class ExcelChangeMonitor extends AbstractChangeMonitor {
         }
     }
 }
-
