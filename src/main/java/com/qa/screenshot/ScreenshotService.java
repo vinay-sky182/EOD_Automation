@@ -3,19 +3,21 @@ package com.qa.screenshot;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.apache.commons.io.FileUtils;
+import java.util.UUID;
 
 import java.io.File;
 import java.io.IOException;
+import org.openqa.selenium.io.FileHandler;
 
 public class ScreenshotService {
 
 
-    public static void captureScreenshot(WebDriver driver, String fileName) {
+    public void captureScreenshot(WebDriver driver, String fileName) {
         TakesScreenshot ts = (TakesScreenshot) driver;
         File source = ts.getScreenshotAs(OutputType.FILE);
         try {
-            FileUtils.copyFile(source, new File("src/main/resources/" + fileName));
+            FileHandler.copy(source, new File("src/main/resources/screenshots/" + fileName + UUID.randomUUID().toString() + ".jpg"));
+            // FileUtils.copyFile(source, new File("src/main/resources/screenshots/" + fileName + ".jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
