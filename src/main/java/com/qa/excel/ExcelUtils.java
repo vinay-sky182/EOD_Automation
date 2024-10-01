@@ -1,37 +1,37 @@
-package com.qa.excel;
-
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-public class ExcelUtils {
-    private String filePath;
-    private List<String> previousData;
-
-    public ExcelUtils(String filePath) {
-        this.filePath = filePath;
-        this.previousData = readExcelData();
-    }
-
-    public List<String> readExcelData() {
-        List<String> data = new ArrayList<>();
-        try (FileInputStream fis = new FileInputStream(filePath); XSSFWorkbook workbook = new XSSFWorkbook(fis)) {
-            XSSFSheet sheet = workbook.getSheetAt(0);
-            sheet.forEach(row -> row.forEach(cell -> data.add(cell.toString())));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return data;
-    }
-
-    public boolean isDataChanged() {
-        List<String> currentData = readExcelData();
-        return !previousData.equals(currentData);
-    }
-}
+//package com.qa.excel;
+//
+//import org.apache.poi.xssf.usermodel.XSSFSheet;
+//import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+//import java.io.FileInputStream;
+//import java.io.IOException;
+//import java.util.ArrayList;
+//import java.util.List;
+//
+//public class ExcelUtils {
+//    private String filePath;
+//    private List<String> previousData;
+//
+//    public ExcelUtils(String filePath) {
+//        this.filePath = filePath;
+//        this.previousData = readExcelData();
+//    }
+//
+//    public List<String> readExcelData() {
+//        List<String> data = new ArrayList<>();
+//        try (FileInputStream fis = new FileInputStream(filePath); XSSFWorkbook workbook = new XSSFWorkbook(fis)) {
+//            XSSFSheet sheet = workbook.getSheetAt(0);
+//            sheet.forEach(row -> row.forEach(cell -> data.add(cell.toString())));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return data;
+//    }
+//
+//    public boolean isDataChanged() {
+//        List<String> currentData = readExcelData();
+//        return !previousData.equals(currentData);
+//    }
+//}
 
 
 
